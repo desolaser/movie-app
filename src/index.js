@@ -3,17 +3,26 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/app';
 import * as serviceWorker from './serviceWorker';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux'
+import rootReducer from './reducers';
 
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 /* 
 This is to bind the store to redux chrome extension
 
-window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() 
+
 */
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>    
   </React.StrictMode>,
   document.getElementById('root')
 );
