@@ -4,16 +4,8 @@ function Login(props) {
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleChange = (event) => {
-    const { name, value } = event.target
-    if (name === "name") {
-      setName(value)
-    } else {
-      setPassword(value)
-    }
-  }
-
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     props.handleLogin(name, password)
   }
 
@@ -33,7 +25,7 @@ function Login(props) {
                 placeholder="Enter your name"
                 name="name"
                 value={name}
-                onChange={handleChange}
+                onChange={e => setName(e.target.value)}
               />
             </div>
             <div className="form-group">
@@ -44,7 +36,7 @@ function Login(props) {
                 placeholder="Enter your password"
                 name="password"
                 value={password}
-                onChange={handleChange}
+                onChange={e => setPassword(e.target.value)}
               />
             </div>
             <div className="form-group text-center">
