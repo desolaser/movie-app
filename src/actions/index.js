@@ -1,19 +1,11 @@
-const login = (name, password) => {
+export const login = () => {
     return {
-        type: 'LOGIN',
-        payload: {
-            name,
-            password
-        }
+        type: 'LOGIN'
     }
 }
 
-const logout = (name, password) => {
+export const logout = () => {
     return {
-        type: 'LOGIN',
-        payload: {
-            name,
-            password
-        }
+        type: 'LOGOUT'
     }
 }
