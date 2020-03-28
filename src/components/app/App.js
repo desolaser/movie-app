@@ -6,7 +6,6 @@ function App() {
   const auth = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   
-
   function handleChange() {
     if (auth) {
       dispatch(logout())
@@ -16,7 +15,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="app">
       <h2>You are currently logged {auth ? "in" : "out"}</h2>
       <button onClick={handleChange}>
         {auth ? "Logout": "Login"}
