@@ -5,7 +5,7 @@ function Login(props) {
     <div className="container min-vh-100">
       <div className="row min-vh-100 justify-content-center align-items-center">
         <div className="card col-6">
-          <div className="card-header">
+          <div className="card-header text-center">
             Login
           </div>
           <div className="card-body">
@@ -25,7 +25,7 @@ function Login(props) {
                 class="form-control"
               />
             </div>
-            <div className="form-group">
+            <div className="form-group text-center">
               <input 
                 type="button"
                 className="btn btn-primary"
