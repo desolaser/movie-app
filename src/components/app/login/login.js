@@ -1,6 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 function Login(props) {
+  const [name, setName] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    if (name === "name") {
+      setName(value)
+    } else {
+      setPassword(value)
+    }
+  }
+
+  const handleSubmit = () => {
+    props.handleLogin(name, password)
+  }
+
   return (
     <div className="container min-vh-100">
       <div className="row min-vh-100 justify-content-center align-items-center">
@@ -12,24 +28,30 @@ function Login(props) {
             <div className="form-group">
               <label>Name</label>
               <input 
+                className="form-control"
                 type="text" 
                 placeholder="Enter your name"
-                class="form-control"
+                name="name"
+                value={name}
+                onChange={handleChange}
               />
             </div>
             <div className="form-group">
               <label>Password</label>
               <input 
+                className="form-control"
                 type="password"
                 placeholder="Enter your password"
-                class="form-control"
+                name="password"
+                value={password}
+                onChange={handleChange}
               />
             </div>
             <div className="form-group text-center">
               <input 
-                type="button"
                 className="btn btn-primary"
-                onClick={ () => console.log("Wenamen") } 
+                type="button"
+                onClick={handleSubmit} 
                 value="Submit"
               />
             </div>

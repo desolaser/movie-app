@@ -7,17 +7,21 @@ function App() {
   const auth = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   
-  const handleChange = () => {
-    if (auth) {
-      dispatch(logout())
+  const handleLogin = (name, password) => {    
+    if (name === "user" && password === "1234") {
+      if (auth) {
+        dispatch(login())
+      } else {
+        console.log("You are already logged in")
+      }
     } else {
-      dispatch(login())
+      console.log('Incorrect password')
     }
   }
 
   return (
     <div className="app container">
-      <Login auth={auth} handleChange={handleChange}/>
+      <Login handleLogin={handleLogin}/>
     </div>
   );
 }
