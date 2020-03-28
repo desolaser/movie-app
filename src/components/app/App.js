@@ -1,12 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { login, logout } from '../../actions'
+import Login from './login'
 
 function App() {
   const auth = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   
-  function handleChange() {
+  const handleChange = () => {
     if (auth) {
       dispatch(logout())
     } else {
@@ -15,11 +16,8 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <h2>You are currently logged {auth ? "in" : "out"}</h2>
-      <button onClick={handleChange}>
-        {auth ? "Logout": "Login"}
-      </button>
+    <div className="app container">
+      <Login auth={auth} handleChange={handleChange}/>
     </div>
   );
 }
