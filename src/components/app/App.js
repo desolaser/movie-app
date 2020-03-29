@@ -13,6 +13,15 @@ function App() {
     }
   )
   const dispatch = useDispatch()
+
+  const handleLogout = () => {
+    dispatch(logout())
+    const popup = {
+      title: "",
+      text: ""
+    }
+    setPopup(() => popup)
+  }
   
   const handleLogin = (name, password) => {    
     if (name === "user" && password === "1234") {
@@ -33,7 +42,7 @@ function App() {
     } else {
       const popup = {
         title: "Alert",
-        text: "Incorrect password"
+        text: "Incorrect username or password"
       }
       setPopup(() => popup)
     }
@@ -41,10 +50,11 @@ function App() {
 
   return (
     <div className="app container">
-      {/*
-        auth ? <MovieScreen /> : <Login handleLogin={handleLogin} popup={popup}/>
-      */}
-      <MovieScreen />
+      {
+        auth ? 
+          <MovieScreen handleLogout={handleLogout} /> : 
+          <Login handleLogin={handleLogin} popup={popup}/>
+      }
     </div>
   );
 }

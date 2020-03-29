@@ -39,6 +39,9 @@ const MovieScreen = (props) => {
     return(
         <div className="min-vh-100">
             <h1 className="text-white p-4" align="center">Movies</h1>
+            <button className="btn btn-warning float-right" onClick={props.handleLogout}>
+                Logout
+            </button>
             <SearchBar input={input} handleChange={handleChange}/>
             <div className="row bg-white">
                 {movieItems}
