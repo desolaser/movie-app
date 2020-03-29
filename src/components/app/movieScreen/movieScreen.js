@@ -23,8 +23,14 @@ const MovieScreen = (props) => {
                 .then(data => setMovies(data.results))
         }
     )
+
+    let filteredMovies = []
+
+    input ?
+        filteredMovies = movies.filter(movie => movie.title.includes(input)):
+        filteredMovies = movies
     
-    const movieItems = movies.map(
+    const movieItems = filteredMovies.map(
         movie => {
             return (
                 <Movie 
