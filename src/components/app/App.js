@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { login, logout } from '../../actions'
 import Login from './login'
+import MovieScreen from './movieScreen'
 
 function App() {
   const auth = useSelector((state) => state.auth)
@@ -15,7 +16,7 @@ function App() {
   
   const handleLogin = (name, password) => {    
     if (name === "user" && password === "1234") {
-      if (auth) {
+      if (!auth) {
         dispatch(login())
         const popup = {
           title: "Success",
@@ -40,7 +41,9 @@ function App() {
 
   return (
     <div className="app container">
-      <Login handleLogin={handleLogin} popup={popup}/>
+      {
+        auth ? <MovieScreen /> : <Login handleLogin={handleLogin} popup={popup}/>
+      }
     </div>
   );
 }
