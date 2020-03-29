@@ -3,7 +3,7 @@ import './searchBar.css'
 
 const SearchBar = (props) => {
 	return(		
-		<div className="search-bar p-2">
+		<div className="bg-dark p-3">
 			<input 
 				type="text" 
 				placeholder="Search"

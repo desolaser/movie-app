@@ -3,9 +3,9 @@ import React from 'react';
 const Movie = (props) => {
 	return(
 		<div className="col-sm-3">
-			<div className="card m-4">
+			<div className="card m-4 bg-dark">
 				<img className="card-image-top" src={props.image} alt={props.title}/>
-				<div className="card-body">
+				<div className="card-body text-white">
 					<p className="card-text">
 						{props.title}
 					</p>
