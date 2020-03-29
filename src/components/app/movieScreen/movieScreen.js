@@ -6,15 +6,23 @@ const MovieScreen = (props) => {
     const [input, setInput] = useState("")
     const [movies, setMovies] = useState([])
 
-    const api_key = "fb8e05f07af673dda52762e34085ea92"
+    const apiKey = "fb8e05f07af673dda52762e34085ea92"
     const language = "en-US"
     const page = 1
-    const link = `https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&language=${language}&page=${page}`
+    const link = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=${language}&page=${page}`
 
     const imageSize = "w185"
     const imageLink = `https://image.tmdb.org/t/p/${imageSize}/`
 
     const handleChange = e => setInput(e.target.value)
+
+    /*
+    const handleClick = (id) => {
+        const detailLink = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=${language}` 
+        fetch(detailLink)
+            .then(response => response.json())
+            .then(data => setDetail(data))
+    } */
 
     useEffect(
         () => {

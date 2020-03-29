@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { login, logout } from '../../actions'
 import Login from './login'
 import MovieScreen from './movieScreen'
+import MovieDetails from './movieDetails'
 
 function App() {
   const auth = useSelector((state) => state.auth)
@@ -49,13 +50,14 @@ function App() {
   }
 
   return (
-    <div className="app container">
+    <div className="container">
       {/*
         auth ? 
           <MovieScreen handleLogout={handleLogout} /> : 
           <Login handleLogin={handleLogin} popup={popup}/>
+      <MovieScreen handleLogout={handleLogout} handleDetails={handleDetails} />
       */}
-      <MovieScreen handleLogout={handleLogout} />
+      <MovieDetails />
     </div>
   );
 }
