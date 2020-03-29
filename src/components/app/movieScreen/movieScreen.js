@@ -38,11 +38,9 @@ const MovieScreen = (props) => {
 
     return(
         <div className="min-vh-100">
-            <div className="justify-contents-center align-items-center">
-                <h1 className="text-white p-4" align="center">Movies</h1>
-            </div>
+            <h1 className="text-white p-4" align="center">Movies</h1>
             <SearchBar input={input} handleChange={handleChange}/>
-            <div className="row">
+            <div className="row bg-white">
                 {movieItems}
             </div>
         </div>
