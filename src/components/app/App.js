@@ -50,11 +50,12 @@ function App() {
 
   return (
     <div className="app container">
-      {
+      {/*
         auth ? 
           <MovieScreen handleLogout={handleLogout} /> : 
           <Login handleLogin={handleLogin} popup={popup}/>
-      }
+      */}
+      <MovieScreen handleLogout={handleLogout} />
     </div>
   );
 }
