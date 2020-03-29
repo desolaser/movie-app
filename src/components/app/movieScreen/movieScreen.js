@@ -1,21 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
+import './movieScreen.css'
+import SearchBar from './searchBar'
 
-const movieScreen = (props) => {
+const MovieScreen = (props) => {
+    const [input, setInput] = useState("")
+
+    const handleChange = e => setInput(e.target.value)
+
     return(
-        <div className="container min-vh-100">
-            <div className="col-sm-12 text-center">
-                <div className="row ">
-                    <h1 className="text-white">Movies</h1>
-                </div>
-                <div className="row">
-                    <input type="text" placeholder="Search" />
-                </div>
-                <div className="row">
+        <div className="min-vh-100">
+            <div className="justify-contents-center align-items-center">
+                <h1 className="text-white" align="center">Movies</h1>
+            </div>
+            <SearchBar input={input} handleChange={handleChange}/>
+            <div className="movies">
 
-                </div>
             </div>
         </div>
     )
 }
 
-export default movieScreen
+export default MovieScreen

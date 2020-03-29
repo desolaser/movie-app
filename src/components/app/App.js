@@ -41,9 +41,10 @@ function App() {
 
   return (
     <div className="app container">
-      {
+      {/*
         auth ? <MovieScreen /> : <Login handleLogin={handleLogin} popup={popup}/>
-      }
+      */}
+      <MovieScreen />
     </div>
   );
 }
