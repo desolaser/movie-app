@@ -9,6 +9,9 @@ function Login(props) {
     props.handleLogin(name, password)
   }
 
+  let alertClasses = props.popup.title === "Alert" ? "bg-danger" : "bg-success" 
+  alertClasses += " p-2 text-center text-white"
+
   return (
     <div className="container min-vh-100">
       <div className="row min-vh-100 justify-content-center align-items-center">
@@ -48,7 +51,15 @@ function Login(props) {
               />
             </div>
           </div>
-        </div>   
+          {props.popup.title &&
+          <div className={alertClasses}>
+            {props.popup.title} 
+            <hr className="bg-dark"/>
+            <div className="card-body">
+              {props.popup.text} 
+            </div>
+          </div> }
+        </div>
       </div>
     </div>        
   );
