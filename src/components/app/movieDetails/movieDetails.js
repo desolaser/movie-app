@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
-import Movie from '../movieScreen/movie';
+import React, { useEffect, useState } from 'react';
 
 const MovieDetails = ({match}) => {	
     const apiKey = "fb8e05f07af673dda52762e34085ea92"
