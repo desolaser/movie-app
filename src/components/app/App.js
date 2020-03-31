@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { login, logout } from '../../actions'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Login from './login'
 import MovieScreen from './movieScreen'
 import MovieDetails from './movieDetails'
@@ -51,13 +52,24 @@ function App() {
 
   return (
     <div className="container">
-      {/*
-        auth ? 
-          <MovieScreen handleLogout={handleLogout} /> : 
-          <Login handleLogin={handleLogin} popup={popup}/>
-      <MovieScreen handleLogout={handleLogout} handleDetails={handleDetails} />
-      */}
-      <MovieDetails />
+      <Router>
+        <Route
+          path="/"
+          exact
+          render={
+            () => <Login handleLogin={handleLogin} popup={popup} />
+          }
+        />
+        <Route
+          path="/movies"
+          exact
+          render={
+            () => <MovieScreen handleLogout={handleLogout} />
+          }
+        />
+        <Route path="/movies/:id" component={MovieDetails} />
+        
+      </Router>
     </div>
   );
 }
