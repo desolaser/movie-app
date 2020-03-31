@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { login, logout } from '../../actions'
+import React from 'react';
+import { useDispatch } from 'react-redux'
+import { logout } from '../../actions'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Login from './login'
 import MovieScreen from './movieScreen'
