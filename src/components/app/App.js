@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { useDispatch } from 'react-redux'
 import { logout } from '../../actions'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Login from './login'
-import MovieScreen from './movieScreen'
-import MovieDetails from './movieDetails'
 import ProtectedRoute from '../../protectedRoute'
+
+const Login = lazy(() => import('./login'))
+const MovieScreen = lazy(() => import('./movieScreen'))
+const MovieDetails = lazy(() => import('./movieDetails'))
 
 function App() {
   const dispatch = useDispatch()
@@ -17,17 +18,19 @@ function App() {
   return (
     <div className="container">
       <Router>
-        <Switch>
-          <Route path="/" exact component={Login} />
-          <ProtectedRoute
-            path="/movies"
-            exact
-            render={
-              () => <MovieScreen handleLogout={handleLogout} />
-            }
-          />
-          <ProtectedRoute path="/movies/:id" component={MovieDetails} />
-        </Switch>        
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route path="/" exact component={Login} />
+            <ProtectedRoute
+              path="/movies"
+              exact
+              render={
+                () => <MovieScreen handleLogout={handleLogout} />
+              }
+            />
+            <ProtectedRoute path="/movies/:id" component={MovieDetails} />
+          </Switch>         
+        </Suspense>     
       </Router>
     </div>
   );
