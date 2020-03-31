@@ -14,15 +14,7 @@ const MovieScreen = (props) => {
     const imageSize = "w185"
     const imageLink = `https://image.tmdb.org/t/p/${imageSize}/`
 
-    const handleChange = e => setInput(e.target.value)
-
-    /*
-    const handleClick = (id) => {
-        const detailLink = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=${language}` 
-        fetch(detailLink)
-            .then(response => response.json())
-            .then(data => setDetail(data))
-    } */
+    const handleChange = e => setInput(e.target.value)   
 
     useEffect(
         () => {
@@ -43,6 +35,7 @@ const MovieScreen = (props) => {
             return (
                 <Movie 
                     key={movie.id} 
+                    id={movie.id} 
                     image={imageLink + movie.poster_path} 
                     title={movie.title}
                 />
