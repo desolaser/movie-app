@@ -53,22 +53,23 @@ function App() {
   return (
     <div className="container">
       <Router>
-        <Route
-          path="/"
-          exact
-          render={
-            () => <Login handleLogin={handleLogin} popup={popup} />
-          }
-        />
-        <Route
-          path="/movies"
-          exact
-          render={
-            () => <MovieScreen handleLogout={handleLogout} />
-          }
-        />
-        <Route path="/movies/:id" component={MovieDetails} />
-        
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={
+              () => <Login handleLogin={handleLogin} popup={popup} />
+            }
+          />
+          <Route
+            path="/movies"
+            exact
+            render={
+              () => <MovieScreen handleLogout={handleLogout} />
+            }
+          />
+          <Route path="/movies/:id" component={MovieDetails} />
+        </Switch>        
       </Router>
     </div>
   );
