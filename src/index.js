@@ -14,12 +14,6 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
-/* 
-This is to bind the store to redux chrome extension
-
-
-*/
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
