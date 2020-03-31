@@ -1,15 +1,44 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { login } from '../../../actions'
 
 function Login(props) {
+  const auth = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const [popup, setPopup] = useState({ title: "", text: "" })
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    props.handleLogin(name, password)
+    handleLogin(name, password)
+  }
+  
+  useEffect(() => {
+    if (auth) props.history.push("/movies")
+  })
+  
+  const handleLogin = (name, password) => {    
+    if (name === "user" && password === "1234") {
+      if (!auth) {
+        dispatch(login())       
+      } else {
+        const popup = {
+          title: "Alert",
+          text: "You are already logged on"
+        }
+        setPopup(() => popup)
+      }
+    } else {
+      const popup = {
+        title: "Alert",
+        text: "Incorrect username or password"
+      }
+      setPopup(() => popup)
+    }
   }
 
-  let alertClasses = props.popup.title === "Alert" ? "bg-danger" : "bg-success" 
+  let alertClasses = popup.title === "Alert" ? "bg-danger" : "bg-success" 
   alertClasses += " p-2 text-center text-white"
 
   return (
@@ -51,12 +80,12 @@ function Login(props) {
               />
             </div>
           </div>
-          {props.popup.title &&
+          {popup.title &&
           <div className={alertClasses}>
-            {props.popup.title} 
+            {popup.title} 
             <hr className="bg-dark"/>
             <div className="card-body">
-              {props.popup.text} 
+              {popup.text} 
             </div>
           </div> }
         </div>
