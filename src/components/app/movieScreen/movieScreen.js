@@ -15,12 +15,16 @@ const MovieScreen = (props) => {
     const imageLink = `https://image.tmdb.org/t/p/${imageSize}/`
 
     const handleChange = e => setInput(e.target.value)   
+    const abortController  = new AbortController();
 
     useEffect(
         () => {
-            fetch(link)
+            fetch(link, { signal: abortController.signal })
                 .then(response => response.json())
                 .then(data => setMovies(data.results))
+            return () => {
+                abortController.abort();
+            };
         }
     )
 
