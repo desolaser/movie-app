@@ -8,20 +8,12 @@ import MovieDetails from './movieDetails'
 
 function App() {
   const auth = useSelector((state) => state.auth)
-  const [popup, setPopup] = useState(
-    {
-      title: "",
-      text: ""
-    }
-  )
+  const [popup, setPopup] = useState({ title: "", text: "" })
   const dispatch = useDispatch()
 
   const handleLogout = () => {
     dispatch(logout())
-    const popup = {
-      title: "",
-      text: ""
-    }
+    const popup = { title: "", text: "" }
     setPopup(() => popup)
   }
   
@@ -31,7 +23,7 @@ function App() {
         dispatch(login())
         const popup = {
           title: "Success",
-          text: "You are already logged in"
+          text: "Logged in!"
         }
         setPopup(() => popup)
       } else {
