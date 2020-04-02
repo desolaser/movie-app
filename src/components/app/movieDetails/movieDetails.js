@@ -1,20 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
+import { apiKey } from './constants'
 
-const MovieDetails = ({match}) => {	
-    const apiKey = "fb8e05f07af673dda52762e34085ea92"
-    const [movie, setMovie] = useState("")
-
-    useEffect(() => {
-        fetchMovie()
-    }, [])
-    
-    const fetchMovie = async () => {
-        const link = 
-            `https://api.themoviedb.org/3/movie/${match.params.id}?api_key=${apiKey}&language=en-US` 
-        const data = await fetch(link)
-        const response = await data.json()
-        setMovie(response)
-    }
+const MovieDetails = ({match}) => {
+    const movie = useMovie(match)
 
 	return(		
 		<div class="container-fluid min-vh-100">
@@ -32,6 +20,24 @@ const MovieDetails = ({match}) => {
             </div>
         </div>
 	);
+}
+
+const useMovie = match => {
+    const [movie, setMovie] = useState("")
+
+    useEffect(() => {
+        fetchMovie()
+    }, [])
+    
+    const fetchMovie = async () => {
+        const link = 
+            `https://api.themoviedb.org/3/movie/${match.params.id}?api_key=${apiKey}&language=en-US` 
+        const data = await fetch(link)
+        const response = await data.json()
+        setMovie(response)
+    }
+
+    return movie
 }
 
 export default MovieDetails;
