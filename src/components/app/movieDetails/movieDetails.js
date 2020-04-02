@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { apiKey } from './constants'
+import { apiKey } from '../../../constants'
 
 const MovieDetails = ({match}) => {
     const movie = useMovie(match)

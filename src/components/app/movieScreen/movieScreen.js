@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SearchBar from './searchBar'
 import Movie from './movie'
-import { apiKey } from './constants'
+import { apiKey } from '../../../constants'
 
 const MovieScreen = (props) => {
     const [input, setInput] = useState("")
