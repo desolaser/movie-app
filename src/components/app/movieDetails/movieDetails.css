@@ -1,0 +1,9 @@
+.bottom-align-text {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.movie-details {
+    margin-top: 150px
+}

@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { apiKey } from '../../../constants'
+import './movieDetails.css'
 
 const MovieDetails = ({match}) => {
     const movie = useMovie(match)
 
 	return(		
-		<div class="container-fluid min-vh-100">
-            <div class="row min-vh-100 justify-content-center align-items-center">
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-					<img src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path} alt="" />						
-				</div>
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 bg-white">
-					<p><b>Overview:</b> {movie.overview}</p>
-					<p><b>Release date:</b> {movie.release_date}</p>
-					<p><b>Vote average:</b> {movie.vote_average}</p>
-					<p><b>Vote count:</b> {movie.vote_count}</p>
-					<p><b>Original language:</b> {movie.original_language}</p>
+        <div className="bg-white p-4 rounded row movie-details">
+            <div className="col-xs-12 col-md-4">
+                <img className="img-fluid" src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path} alt="" />						
+            </div>
+            <div className="col-xs-12 col-md-8" style={ {position: "relative"} }>
+                <p><b>Overview:</b> {movie.overview}</p>
+                <p><b>Release date:</b> {movie.release_date}</p>
+                <p><b>Original language:</b> {movie.original_language}</p>
+                <div className="row bg-dark text-white bottom-align-text">
+                    <div className="bg-success col-xs-3 col-md-3">
+                        <h1>{movie.vote_average}</h1>
+                        <p>Rating</p>
+                    </div>
+                    <div className="col-xs-9 col-md-9 p-2">
+                        <p><b>Vote count:</b> {movie.vote_count}</p>
+                        <Link className="btn btn-warning float-right" to="/movies">Back</Link>
+                    </div>
                 </div>
             </div>
         </div>
