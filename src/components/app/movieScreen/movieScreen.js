@@ -5,28 +5,8 @@ import { apiKey } from './constants'
 
 const MovieScreen = (props) => {
     const [input, setInput] = useState("")
-    const movies = useMovies()
-    
-    let filteredMovies = []
-    input ?
-        filteredMovies = movies.filter(movie => movie.title.includes(input)):
-        filteredMovies = movies
- 
-    const imageSize = "w185"
-    const imageLink = `https://image.tmdb.org/t/p/${imageSize}/`
-    
-    const movieItems = filteredMovies.map(
-        movie => {
-            return (
-                <Movie 
-                    key={movie.id} 
-                    id={movie.id} 
-                    image={imageLink + movie.poster_path} 
-                    title={movie.title}
-                />
-            )
-        }
-    )
+    const movies = useMovies()        
+    const movieItems = getMoviesList(movies, input)
 
     return(
         <div className="min-vh-100">
@@ -65,6 +45,29 @@ const useMovies = () => {
     })
 
     return movies
+}
+
+const getMoviesList = (movies, input) => {    
+    let filteredMovies = []
+    input ?
+        filteredMovies = movies.filter(movie => movie.title.includes(input)):
+        filteredMovies = movies
+
+    const imageSize = "w185"
+    const imageLink = `https://image.tmdb.org/t/p/${imageSize}/`
+
+    const movieItems = filteredMovies.map(movie => {
+        return (
+            <Movie 
+                key={movie.id} 
+                id={movie.id} 
+                image={imageLink + movie.poster_path} 
+                title={movie.title}
+            />
+        )
+    })
+
+    return movieItems
 }
 
 export default MovieScreen
