@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import SearchBar from './searchBar'
 import Movie from './movie'
+import { logout } from '../../../actions'
 import { apiKey } from '../../../constants'
 
-const MovieScreen = (props) => {
+const MovieScreen = () => {
     const [input, setInput] = useState("")
     const movies = useMovies()        
     const movieItems = getMoviesList(movies, input)
+    const dispatch = useDispatch()
+
+    const handleLogout = () => {
+        dispatch(logout())
+    }
 
     return(
         <div className="min-vh-100">
             <h1 className="text-white p-4" align="center">Movies</h1>
-            <button className="btn btn-warning float-right m-2" onClick={props.handleLogout}>
+            <button className="btn btn-warning float-right m-2" onClick={handleLogout}>
                 Logout
             </button>
             <SearchBar input={input} handleChange={e => setInput(e.target.value)}/>
