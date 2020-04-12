@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/movie-app/static/css/main.826849d7.chunk.css",
+    "main.js": "/movie-app/static/js/main.50d9179d.chunk.js",
+    "main.js.map": "/movie-app/static/js/main.50d9179d.chunk.js.map",
+    "runtime-main.js": "/movie-app/static/js/runtime-main.d41f86be.js",
+    "runtime-main.js.map": "/movie-app/static/js/runtime-main.d41f86be.js.map",
+    "static/css/2.89f067aa.chunk.css": "/movie-app/static/css/2.89f067aa.chunk.css",
+    "static/js/2.e6e5c53f.chunk.js": "/movie-app/static/js/2.e6e5c53f.chunk.js",
+    "static/js/2.e6e5c53f.chunk.js.map": "/movie-app/static/js/2.e6e5c53f.chunk.js.map",
+    "static/css/3.e6f94020.chunk.css": "/movie-app/static/css/3.e6f94020.chunk.css",
+    "static/js/3.643a5a33.chunk.js": "/movie-app/static/js/3.643a5a33.chunk.js",
+    "static/js/3.643a5a33.chunk.js.map": "/movie-app/static/js/3.643a5a33.chunk.js.map",
+    "static/css/4.5231ca64.chunk.css": "/movie-app/static/css/4.5231ca64.chunk.css",
+    "static/js/4.df606948.chunk.js": "/movie-app/static/js/4.df606948.chunk.js",
+    "static/js/4.df606948.chunk.js.map": "/movie-app/static/js/4.df606948.chunk.js.map",
+    "static/js/5.53bc1ec5.chunk.js": "/movie-app/static/js/5.53bc1ec5.chunk.js",
+    "static/js/5.53bc1ec5.chunk.js.map": "/movie-app/static/js/5.53bc1ec5.chunk.js.map",
+    "index.html": "/movie-app/index.html",
+    "precache-manifest.25f737c9c7022bd7154decfca74d9037.js": "/movie-app/precache-manifest.25f737c9c7022bd7154decfca74d9037.js",
+    "service-worker.js": "/movie-app/service-worker.js",
+    "static/css/2.89f067aa.chunk.css.map": "/movie-app/static/css/2.89f067aa.chunk.css.map",
+    "static/css/3.e6f94020.chunk.css.map": "/movie-app/static/css/3.e6f94020.chunk.css.map",
+    "static/css/4.5231ca64.chunk.css.map": "/movie-app/static/css/4.5231ca64.chunk.css.map",
+    "static/css/main.826849d7.chunk.css.map": "/movie-app/static/css/main.826849d7.chunk.css.map",
+    "static/js/2.e6e5c53f.chunk.js.LICENSE.txt": "/movie-app/static/js/2.e6e5c53f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d41f86be.js",
+    "static/css/2.89f067aa.chunk.css",
+    "static/js/2.e6e5c53f.chunk.js",
+    "static/css/main.826849d7.chunk.css",
+    "static/js/main.50d9179d.chunk.js"
+  ]
+}
