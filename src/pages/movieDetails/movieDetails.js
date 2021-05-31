@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { apiKey } from '../../../constants'
+import { apiKey } from '../../constants'
 import './movieDetails.css'
 
 const MovieDetails = ({match}) => {

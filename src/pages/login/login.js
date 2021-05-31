@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { login } from '../../../actions'
+import { login } from '../../redux/actions'
 
 function Login(props) {
   const auth = useSelector((state) => state.auth)

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import SearchBar from './searchBar'
 import Movie from './movie'
-import { logout } from '../../../actions'
-import { apiKey } from '../../../constants'
+import { logout } from '../../redux/actions'
+import { apiKey } from '../../constants'
 
 const MovieScreen = () => {
     const [input, setInput] = useState("")
