@@ -1,11 +1,10 @@
 import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import ProtectedRoute from '../../protectedRoute'
+import ProtectedRoute from './components/protectedRoute'
 
-const Login = lazy(() => import('./login'))
-const MovieScreen = lazy(() => import('./movieScreen'))
-const MovieDetails = lazy(() => import('./movieDetails'))
-
+const Login = lazy(() => import('./pages/login'))
+const MovieScreen = lazy(() => import('./pages/movieScreen'))
+const MovieDetails = lazy(() => import('./pages/movieDetails'))
 
 function App() {
   return (

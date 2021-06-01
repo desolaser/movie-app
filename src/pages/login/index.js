@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { login } from '../../../actions'
+import { useHistory } from 'react-router'
+import { login } from '../../redux/slice/authSlice'
 
-function Login(props) {
-  const auth = useSelector((state) => state.auth)
+const Login = () => {
+  const auth = useSelector(state => state.root.auth)
+  const history = useHistory()
   const dispatch = useDispatch()
   const [popup, setPopup] = useState({ title: "", text: "" })
   const [name, setName] = useState("")
@@ -11,17 +13,13 @@ function Login(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    handleLogin(name, password)
-  }
-  
-  useEffect(() => {
-    if (auth) props.history.push("/movies")
-  })
-  
-  const handleLogin = (name, password) => {    
     if (name === "user" && password === "1234") {
       if (!auth) {
-        dispatch(login())       
+        dispatch(login({
+          name,
+          password
+        }))
+        history.push("/movies")
       } else {
         const popup = {
           title: "Alert",
@@ -81,18 +79,18 @@ function Login(props) {
             </div>
           </div>
           {popup.title &&
-          <div className={alertClasses}>
-            {popup.title} 
-            <hr className="bg-dark"/>
-            <div className="card-body">
-              {popup.text} 
-            </div>
-          </div> }
+            <div className={alertClasses}>
+              {popup.title} 
+              <hr className="bg-dark"/>
+              <div className="card-body">
+                {popup.text} 
+              </div>
+            </div>}
         </div>
       </div>
-    </div>        
-  );
+    </div>
+  )
 }
 
-export default Login;
+export default Login
 

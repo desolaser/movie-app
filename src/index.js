@@ -1,17 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import 'bootstrap/dist/css/bootstrap.css';
-// import 'font-awesome/css/font-awesome.min.css';
-import App from './components/app';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import App from './App'
+import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
-import store from './config/store'
-
+import { PersistGate } from 'redux-persist/integration/react'
+import store, { persistor } from './redux/store'
+ 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>  
     </Provider>    
   </React.StrictMode>,
   document.getElementById('root')
