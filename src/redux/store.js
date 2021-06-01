@@ -1,34 +1,28 @@
-import { createStore } from 'redux';
-import rootReducer from './reducers';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { persistStore, persistCombineReducers } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
-const saveToLocalStorage = state => {
-    try {
-        const serializedState = JSON.stringify(state)
-        localStorage.setItem('state', serializedState)
-    } catch (error) {
-        console.log(error)
-    }
+import authSlice from './slice/authSlice'
+
+const persistConfig = {
+  key: 'root',
+  storage
 }
 
-const loadFromLocalStorage = () => {
-    try {
-        const serializedState = localStorage.getItem('state')
-        if (serializedState === null) return undefined
-        return JSON.parse(serializedState)
-    } catch (error) {
-        console.log(error)
-        return undefined
-    }
-}
+const rootReducer = persistCombineReducers(persistConfig, {
+  auth: authSlice
+}) 
 
-const persistentState = loadFromLocalStorage()
+const store = configureStore({
+  reducer: {    
+    root: rootReducer
+  },
+  middleware: getDefaultMiddleware({
+    serializableCheck: false
+  })
+})
 
-const store = createStore(
-    rootReducer,
-    persistentState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
-
-store.subscribe(() => saveToLocalStorage(store.getState()))
+const persistor = persistStore(store)
 
 export default store
+export { persistor }

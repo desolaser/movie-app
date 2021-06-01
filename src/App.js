@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import ProtectedRoute from './protectedRoute'
+import ProtectedRoute from './components/protectedRoute'
 
 const Login = lazy(() => import('./pages/login'))
 const MovieScreen = lazy(() => import('./pages/movieScreen'))
