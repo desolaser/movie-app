@@ -6,7 +6,16 @@ import useMovies from './hooks/useMovies'
 
 const MovieScreen = () => {
   const [search, setSearch] = useState("")
-  const [movies, page, setPage, totalPages] = useMovies(1)        
+  const [
+    movies, 
+    page, 
+    setPage, 
+    totalPages,
+    {
+      loading,
+      error
+    }
+  ] = useMovies(1)        
   const movieItems = getMoviesList(movies, search)
 
   return (
@@ -14,6 +23,15 @@ const MovieScreen = () => {
       <h1 className="text-white p-4" align="center">Movies</h1>
       <TopToolbar search={search} handleChange={e => setSearch(e.target.value)} />
       <div className="row bg-white">
+        {error ? 
+          <h4 className="m-auto py-4">
+            {error}
+          </h4>
+        : 
+          loading && <h4 className="m-auto py-4">
+            Loading data, please wait a second
+          </h4>
+        }
         <h1 className="col-12 my-4 text-center">Page: {page}</h1>
         {movieItems.length > 0 ? movieItems : (
           <h4 className="m-auto py-4">
