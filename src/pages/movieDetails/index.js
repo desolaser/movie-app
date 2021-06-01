@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import './movieDetails.css'
+import styled from 'styled-components'
+
+const MovieContainer = styled.div`
+  margin-top: 150px
+`
+
+const RatingContainer = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+`
 
 const MovieDetails = ({ match }) => {
   const movie = useMovie(match.params.id)
 
 	return (		
-    <div className="bg-white p-4 rounded row movie-details">
+    <MovieContainer className="bg-white p-4 rounded row">
       <div className="col-xs-12 col-md-4">
         <img className="img-fluid" src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path} alt="" />						
       </div>
@@ -14,7 +24,7 @@ const MovieDetails = ({ match }) => {
         <p><b>Overview:</b> {movie.overview}</p>
         <p><b>Release date:</b> {movie.release_date}</p>
         <p><b>Original language:</b> {movie.original_language}</p>
-        <div className="row bg-dark text-white bottom-align-text">
+        <RatingContainer className="row bg-dark text-white">
           <div className="bg-success col-xs-3 col-md-3">
             <h1>{movie.vote_average}</h1>
             <p>Rating</p>
@@ -23,9 +33,9 @@ const MovieDetails = ({ match }) => {
             <p><b>Vote count:</b> {movie.vote_count}</p>
             <Link className="btn btn-warning float-right" to="/movies">Back</Link>
           </div>
-        </div>
+        </RatingContainer>
       </div>
-    </div>
+    </MovieContainer>
 	)
 }
 
