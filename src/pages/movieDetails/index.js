@@ -1,19 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-
-const MovieContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);  
-`
-
-const RatingContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-`
+import useMovie from './hooks/useMovie'
+import { MovieContainer, RatingContainer } from './elements'
 
 const MovieDetails = ({ match }) => {
   const movie = useMovie(match.params.id)
@@ -40,24 +28,6 @@ const MovieDetails = ({ match }) => {
       </div>
     </MovieContainer>
 	)
-}
-
-const useMovie = movieId => {
-  const [movie, setMovie] = useState("")
-
-  useEffect(() => {
-    fetchMovie()
-  }, [])
-  
-  const fetchMovie = async () => {
-    const link = 
-      `${process.env.REACT_APP_API}/movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US` 
-    const data = await fetch(link)
-    const response = await data.json()
-    setMovie(response)
-  }
-
-  return movie
 }
 
 export default MovieDetails;

@@ -48,7 +48,6 @@ const MovieScreen = () => {
   )
 }
 
-
 const getMoviesList = (movies, search) => {    
   let filteredMovies = []
   search ?
