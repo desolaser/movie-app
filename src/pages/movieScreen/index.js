@@ -20,14 +20,16 @@ const MovieScreen = () => {
       <div className="row bg-white">
         {movieItems}
       </div>
-      {page !== 1 && (
-        <button className="btn btn-primary m-2" onClick={() => setPage(page - 1)}>
-        Previous
-        </button>     
-      )}
-      <button className="btn btn-primary m-2" onClick={() => setPage(page + 1)}>
-        Next
-      </button>
+      <div className="bg-dark row justify-content-center">
+        {page !== 1 && (
+          <button className="btn btn-primary m-2" onClick={() => setPage(page - 1)}>
+            Previous
+          </button>     
+        )}
+        <button className="btn btn-primary m-2" onClick={() => setPage(page + 1)}>
+          Next
+        </button>    
+      </div>
     </div>
   )
 }
@@ -67,16 +69,14 @@ const getMoviesList = (movies, input) => {
   const imageSize = "w185"
   const imageLink = `${process.env.REACT_APP_IMAGE_API}/${imageSize}/`
 
-  const movieItems = filteredMovies.map(movie => {
-    return (
-      <Movie 
-        key={movie.id} 
-        id={movie.id} 
-        image={imageLink + movie.poster_path} 
-        title={movie.title}
-      />
-    )
-  })
+  const movieItems = filteredMovies.map(movie => (
+    <Movie 
+      key={movie.id} 
+      id={movie.id} 
+      image={imageLink + movie.poster_path} 
+      title={movie.title}
+    />
+  ))
 
   return movieItems
 }
