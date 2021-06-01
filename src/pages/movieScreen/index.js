@@ -6,33 +6,37 @@ import { logout } from '../../redux/slice/authSlice'
 
 const MovieScreen = () => {
   const [input, setInput] = useState("")
-  const movies = useMovies()        
+  const [movies, page, setPage] = useMovies(1)        
   const movieItems = getMoviesList(movies, input)
   const dispatch = useDispatch()
 
-  const handleLogout = () => {
-    dispatch(logout())
-  }
-
-  return(
+  return (
     <div className="min-vh-100">
       <h1 className="text-white p-4" align="center">Movies</h1>
-      <button className="btn btn-warning float-right m-2" onClick={handleLogout}>
+      <button className="btn btn-warning float-right m-2" onClick={() => dispatch(logout())}>
         Logout
       </button>
-      <SearchBar input={input} handleChange={e => setInput(e.target.value)}/>
+      <SearchBar input={input} handleChange={e => setInput(e.target.value)} />
       <div className="row bg-white">
         {movieItems}
       </div>
+      {page !== 1 && (
+        <button className="btn btn-primary m-2" onClick={() => setPage(page - 1)}>
+        Previous
+        </button>     
+      )}
+      <button className="btn btn-primary m-2" onClick={() => setPage(page + 1)}>
+        Next
+      </button>
     </div>
   )
 }
 
-const useMovies = () => {
+const useMovies = defaultPage => {
   const [movies, setMovies] = useState([])
+  const [page, setPage] = useState(defaultPage)
   
   const language = "en-US"
-  const page = 1
   const link = 
     `${process.env.REACT_APP_API}/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&page=${page}`
 
@@ -47,17 +51,17 @@ const useMovies = () => {
   useEffect(() => {
     fetchMovies()
     return () => {
-      abortController.abort();
+      abortController.abort()
     };
-  })
+  }, [page])
 
-  return movies
+  return [ movies, page, setPage ]
 }
 
 const getMoviesList = (movies, input) => {    
   let filteredMovies = []
   input ?
-    filteredMovies = movies.filter(movie => movie.title.includes(input)):
+    filteredMovies = movies.filter(movie => movie.title.includes(input)) :
     filteredMovies = movies
 
   const imageSize = "w185"
