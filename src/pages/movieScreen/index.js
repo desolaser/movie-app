@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import Movie from './movie'
 import TopToolbar from '../../components/topToolbar'
+import BottomToolbar from './components/bottomToolbar'
+import Movie from './components/movie'
 
 const MovieScreen = () => {
   const [search, setSearch] = useState("")
@@ -19,28 +20,11 @@ const MovieScreen = () => {
           </h4>
         )}
       </div>
-      <div className="bg-dark row justify-content-center">
-        {page !== 1 && (
-          <>
-            <button className="btn btn-primary m-2" onClick={() => setPage(1)}>
-              {'<<'}
-            </button>
-            <button className="btn btn-primary m-2" onClick={() => setPage(page - 1)}>
-              Previous
-            </button>
-          </>
-        )}
-        {page !== totalPages && (
-          <>
-            <button className="btn btn-primary m-2" onClick={() => setPage(page + 1)}>
-              Next
-            </button>
-            <button className="btn btn-primary m-2" onClick={() => setPage(totalPages)}>
-              {'>>'}
-            </button>
-          </>
-        )}
-      </div>
+      <BottomToolbar
+        page={page}
+        setPage={setPage}
+        totalPages={totalPages}
+      />      
     </div>
   )
 }
