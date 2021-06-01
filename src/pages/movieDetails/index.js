@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { apiKey } from '../../constants'
 import './movieDetails.css'
 
 const MovieDetails = ({ match }) => {
@@ -39,7 +38,7 @@ const useMovie = movieId => {
   
   const fetchMovie = async () => {
     const link = 
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US` 
+      `${process.env.REACT_APP_API}/movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US` 
     const data = await fetch(link)
     const response = await data.json()
     setMovie(response)

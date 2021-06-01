@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import SearchBar from '../../components/searchBar'
 import Movie from './movie'
+import SearchBar from '../../components/searchBar'
 import { logout } from '../../redux/slice/authSlice'
-import { apiKey } from '../../constants'
 
 const MovieScreen = () => {
   const [input, setInput] = useState("")
@@ -34,7 +33,8 @@ const useMovies = () => {
   
   const language = "en-US"
   const page = 1
-  const link = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=${language}&page=${page}`
+  const link = 
+    `${process.env.REACT_APP_API}/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&page=${page}`
 
   const abortController  = new AbortController()
 
@@ -61,7 +61,7 @@ const getMoviesList = (movies, input) => {
     filteredMovies = movies
 
   const imageSize = "w185"
-  const imageLink = `https://image.tmdb.org/t/p/${imageSize}/`
+  const imageLink = `${process.env.REACT_APP_IMAGE_API}/${imageSize}/`
 
   const movieItems = filteredMovies.map(movie => {
     return (
