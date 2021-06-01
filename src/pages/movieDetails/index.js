@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const MovieContainer = styled.div`
-  margin-top: 150px
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);  
 `
 
 const RatingContainer = styled.div`
