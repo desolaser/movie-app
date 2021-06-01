@@ -1,78 +1,70 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import Movie from './movie'
-import SearchBar from '../../components/searchBar'
-import { logout } from '../../redux/slice/authSlice'
+import React, { useState } from 'react'
+import TopToolbar from '../../components/topToolbar'
+import BottomToolbar from './components/bottomToolbar'
+import Movie from './components/movie'
+import useMovies from './hooks/useMovies'
 
 const MovieScreen = () => {
-  const [input, setInput] = useState("")
-  const movies = useMovies()        
-  const movieItems = getMoviesList(movies, input)
-  const dispatch = useDispatch()
+  const [search, setSearch] = useState("")
+  const [
+    movies, 
+    page, 
+    setPage, 
+    totalPages,
+    {
+      loading,
+      error
+    }
+  ] = useMovies(1)        
+  const movieItems = getMoviesList(movies, search)
 
-  const handleLogout = () => {
-    dispatch(logout())
-  }
-
-  return(
+  return (
     <div className="min-vh-100">
       <h1 className="text-white p-4" align="center">Movies</h1>
-      <button className="btn btn-warning float-right m-2" onClick={handleLogout}>
-        Logout
-      </button>
-      <SearchBar input={input} handleChange={e => setInput(e.target.value)}/>
+      <TopToolbar search={search} handleChange={e => setSearch(e.target.value)} />
       <div className="row bg-white">
-        {movieItems}
+        {error ? 
+          <h4 className="m-auto py-4">
+            {error}
+          </h4>
+        : 
+          loading && <h4 className="m-auto py-4">
+            Loading data, please wait a second
+          </h4>
+        }
+        <h1 className="col-12 my-4 text-center">Page: {page}</h1>
+        {movieItems.length > 0 ? movieItems : (
+          <h4 className="m-auto py-4">
+            No movies found
+          </h4>
+        )}
       </div>
+      <BottomToolbar
+        page={page}
+        setPage={setPage}
+        totalPages={totalPages}
+      />      
     </div>
   )
 }
 
-const useMovies = () => {
-  const [movies, setMovies] = useState([])
-  
-  const language = "en-US"
-  const page = 1
-  const link = 
-    `${process.env.REACT_APP_API}/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&page=${page}`
-
-  const abortController  = new AbortController()
-
-  const fetchMovies = () => {
-    fetch(link, { signal: abortController.signal })
-      .then(response => response.json())
-      .then(data => setMovies(data.results))
-  }
-
-  useEffect(() => {
-    fetchMovies()
-    return () => {
-      abortController.abort();
-    };
-  })
-
-  return movies
-}
-
-const getMoviesList = (movies, input) => {    
+const getMoviesList = (movies, search) => {    
   let filteredMovies = []
-  input ?
-    filteredMovies = movies.filter(movie => movie.title.includes(input)):
+  search ?
+    filteredMovies = movies.filter(movie => movie.title.includes(search)) :
     filteredMovies = movies
 
   const imageSize = "w185"
   const imageLink = `${process.env.REACT_APP_IMAGE_API}/${imageSize}/`
 
-  const movieItems = filteredMovies.map(movie => {
-    return (
-      <Movie 
-        key={movie.id} 
-        id={movie.id} 
-        image={imageLink + movie.poster_path} 
-        title={movie.title}
-      />
-    )
-  })
+  const movieItems = filteredMovies.map(movie => (
+    <Movie 
+      key={movie.id} 
+      id={movie.id} 
+      image={imageLink + movie.poster_path} 
+      title={movie.title}
+    />
+  ))
 
   return movieItems
 }
