@@ -9,7 +9,7 @@ const MovieDetails = ({ match }) => {
 	return (		
     <MovieContainer className="bg-white p-4 rounded row">
       <div className="col-xs-12 col-md-4">
-        <img className="img-fluid" src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path} alt="" />						
+        <img className="img-fluid" src={movie.image_url} alt="" />						
       </div>
       <div className="col-xs-12 col-md-8" style={{ position: "relative" }}>
         <p><b>Overview:</b> {movie.overview}</p>
