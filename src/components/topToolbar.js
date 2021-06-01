@@ -13,7 +13,10 @@ const TopToolbar = ({ search, handleChange }) => {
 				value={search}
 				onChange={handleChange}
 			/>
-      <button className="btn btn-warning col-xs-12 col-md-3 col-lg-1" onClick={() => dispatch(logout())}>
+      <button 
+				className="btn btn-warning col-xs-12 col-md-3 col-lg-1" 
+				onClick={() => dispatch(logout())}
+			>
         Logout
       </button>
 		</div>
