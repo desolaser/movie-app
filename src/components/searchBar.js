@@ -2,7 +2,7 @@ import React from 'react'
 
 const SearchBar = ({ input, handleChange }) => {
 	return(		
-		<div className="bg-dark p-3">
+		<div className="bg-dark">
 			<input 
 				type="text" 
 				placeholder="Search"

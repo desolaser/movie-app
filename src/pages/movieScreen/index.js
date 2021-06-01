@@ -19,7 +19,11 @@ const MovieScreen = () => {
       <SearchBar input={input} handleChange={e => setInput(e.target.value)} />
       <div className="row bg-white">
         <h1 className="col-12 my-4 text-center">Page: {page}</h1>
-        {movieItems}
+        {movieItems.length > 0 ? movieItems : (
+          <h4 className="m-auto py-4">
+            No movies found
+          </h4>
+        )}
       </div>
       <div className="bg-dark row justify-content-center">
         {page !== 1 && (
