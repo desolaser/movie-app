@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import Movie from './movie'
-import SearchBar from '../../components/searchBar'
-import { logout } from '../../redux/slice/authSlice'
+import TopToolbar from '../../components/topToolbar'
 
 const MovieScreen = () => {
-  const [input, setInput] = useState("")
+  const [search, setSearch] = useState("")
   const [movies, page, setPage, totalPages] = useMovies(1)        
-  const movieItems = getMoviesList(movies, input)
-  const dispatch = useDispatch()
+  const movieItems = getMoviesList(movies, search)
 
   return (
     <div className="min-vh-100">
       <h1 className="text-white p-4" align="center">Movies</h1>
-      <button className="btn btn-warning float-right m-2" onClick={() => dispatch(logout())}>
-        Logout
-      </button>
-      <SearchBar input={input} handleChange={e => setInput(e.target.value)} />
+      <TopToolbar search={search} handleChange={e => setSearch(e.target.value)} />
       <div className="row bg-white">
         <h1 className="col-12 my-4 text-center">Page: {page}</h1>
         {movieItems.length > 0 ? movieItems : (
@@ -81,10 +75,10 @@ const useMovies = defaultPage => {
   return [ movies, page, setPage, totalPages ]
 }
 
-const getMoviesList = (movies, input) => {    
+const getMoviesList = (movies, search) => {    
   let filteredMovies = []
-  input ?
-    filteredMovies = movies.filter(movie => movie.title.includes(input)) :
+  search ?
+    filteredMovies = movies.filter(movie => movie.title.includes(search)) :
     filteredMovies = movies
 
   const imageSize = "w185"
