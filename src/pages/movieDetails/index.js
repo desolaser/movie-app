@@ -5,7 +5,7 @@ import './movieDetails.css'
 const MovieDetails = ({ match }) => {
   const movie = useMovie(match.params.id)
 
-	return(		
+	return (		
     <div className="bg-white p-4 rounded row movie-details">
       <div className="col-xs-12 col-md-4">
         <img className="img-fluid" src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path} alt="" />						
@@ -26,7 +26,7 @@ const MovieDetails = ({ match }) => {
         </div>
       </div>
     </div>
-	);
+	)
 }
 
 const useMovie = movieId => {

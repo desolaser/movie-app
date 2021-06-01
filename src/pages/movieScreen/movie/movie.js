@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Movie = (props) => {
-	return(					
+	return (					
 		<div className="col-sm-3">
 			<Link to={"/movies/" + props.id}>
 				<div className="card m-4 bg-dark">

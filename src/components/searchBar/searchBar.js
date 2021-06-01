@@ -1,14 +1,14 @@
-import React from 'react';
+import React from 'react'
 import './searchBar.css'
 
-const SearchBar = (props) => {
+const SearchBar = ({ input, handleChange }) => {
 	return(		
 		<div className="bg-dark p-3">
 			<input 
 				type="text" 
 				placeholder="Search"
-				value={props.input}
-				onChange={props.handleChange}
+				value={input}
+				onChange={handleChange}
 			/>
 		</div>
 	);
