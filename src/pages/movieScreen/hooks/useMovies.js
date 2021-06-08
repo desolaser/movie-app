@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 const useMovies = defaultPage => {
   const [movies, setMovies] = useState([])
+  const [search, setSearch] = useState('')
   const [page, setPage] = useState(defaultPage)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState()
@@ -10,11 +11,14 @@ const useMovies = defaultPage => {
   const language = "en-US"
   const link = 
     `${process.env.REACT_APP_API}/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&page=${page}`
-
+  const searchLink = 
+    `${process.env.REACT_APP_API}/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&query=${search}&page=${page}`
+    
   const abortController  = new AbortController()
 
   const fetchMovies = () => {
-    fetch(link, { signal: abortController.signal })
+    setLoading(true)
+    fetch(search != '' ? searchLink : link, { signal: abortController.signal })
       .then(response => response.json())
       .then(data => {
         setMovies(data.results)
@@ -25,7 +29,6 @@ const useMovies = defaultPage => {
   }
 
   useEffect(() => {
-    setLoading(true)
     fetchMovies()
     return () => {
       abortController.abort()
@@ -37,6 +40,9 @@ const useMovies = defaultPage => {
     page, 
     setPage, 
     totalPages,
+    search,
+    setSearch,
+    fetchMovies,
     {
       loading,
       error
