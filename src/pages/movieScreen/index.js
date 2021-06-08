@@ -1,16 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import TopToolbar from '../../components/topToolbar'
 import BottomToolbar from './components/bottomToolbar'
 import Movie from './components/movie'
 import useMovies from './hooks/useMovies'
 
 const MovieScreen = () => {
-  const [search, setSearch] = useState("")
   const [
     movies, 
     page, 
     setPage, 
     totalPages,
+    search,
+    setSearch,
+    fetchMovies,
     {
       loading,
       error
@@ -21,7 +23,11 @@ const MovieScreen = () => {
   return (
     <div className="min-vh-100">
       <h1 className="text-white p-4" align="center">Movies</h1>
-      <TopToolbar search={search} handleChange={e => setSearch(e.target.value)} />
+      <TopToolbar
+        search={search}
+        handleChange={e => setSearch(e.target.value)}
+        handleSearch={fetchMovies}
+      />
       <div className="row bg-white">
         {error ? 
           <h4 className="m-auto py-4">
@@ -48,16 +54,11 @@ const MovieScreen = () => {
   )
 }
 
-const getMoviesList = (movies, search) => {    
-  let filteredMovies = []
-  search ?
-    filteredMovies = movies.filter(movie => movie.title.includes(search)) :
-    filteredMovies = movies
-
+const getMoviesList = movies => {
   const imageSize = "w185"
   const imageLink = `${process.env.REACT_APP_IMAGE_API}/${imageSize}/`
 
-  const movieItems = filteredMovies.map(movie => (
+  const movieItems = movies.map(movie => (
     <Movie 
       key={movie.id} 
       id={movie.id} 
